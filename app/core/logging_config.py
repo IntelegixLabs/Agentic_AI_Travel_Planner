@@ -15,7 +15,7 @@ def setup_logging(log_level: Optional[str] = None) -> None:
     Args:
         log_level: Logging level (DEBUG, INFO, WARNING, ERROR, CRITICAL)
     """
-    level = log_level or settings.LOG_LEVEL
+    level = log_level
     
     # Create formatter
     formatter = logging.Formatter(
@@ -26,7 +26,6 @@ def setup_logging(log_level: Optional[str] = None) -> None:
     # Setup console handler
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(formatter)
-    console_handler.setLevel(getattr(logging, level.upper()))
     
     # Setup file handler
     file_handler = logging.FileHandler('travel_planner.log')

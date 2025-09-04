@@ -2,3 +2,4 @@
 .idea
 .env
 travel_planner.db
+travel_planner.log
