@@ -16,14 +16,14 @@ logger = logging.getLogger(__name__)
 # Create database engine
 engine = create_engine(
     settings.database_url,
-    echo=settings.DEBUG,
+    echo=settings.debug,
     pool_pre_ping=True
 )
 
 # Create async engine for async operations
 async_engine = create_async_engine(
     settings.database_url.replace("sqlite://", "sqlite+aiosqlite://"),
-    echo=settings.DEBUG,
+    echo=settings.debug,
     pool_pre_ping=True
 )
 

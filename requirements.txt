@@ -17,6 +17,7 @@ pillow==11.3.0
 aiofiles==24.1.0
 sqlalchemy==2.0.43
 alembic==1.16.5
+aiosqlite==0.20.0
 pytest==8.4.2
 pytest-asyncio==1.1.0
 pytest-mock==3.14.1

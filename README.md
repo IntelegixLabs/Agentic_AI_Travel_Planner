@@ -27,7 +27,7 @@ For detailed architecture information, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## 📋 Prerequisites
 
-- Python 3.8+
+- Python 3.11+
 - pip or poetry for dependency management
 - SQLite (included with Python)
 - OpenAI API key (for CrewAI agents)
@@ -36,8 +36,8 @@ For detailed architecture information, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/ai-travel-planner.git
-   cd ai-travel-planner
+   git clone https://github.com/IntelegixLabs/Agentic_AI_Travel_Planner.git
+   cd Agentic_AI_Travel_Planner
    ```
 
 2. **Create virtual environment**
