@@ -48,7 +48,7 @@ For detailed architecture information, see [ARCHITECTURE.md](ARCHITECTURE.md).
 
 3. **Install dependencies**
    ```bash
-   pip install -r requirements.txt
+   uv pip install -r requirements.txt
    ```
 
 4. **Set up environment variables**
