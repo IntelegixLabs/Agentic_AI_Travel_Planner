@@ -12,7 +12,13 @@ http://localhost:8000/api/v1
 
 ## Authentication
 
-Currently, the API does not require authentication for development purposes. In production, implement API key authentication or OAuth2.
+The API uses RapidAPI for external travel services. You need to provide a RapidAPI key in your environment variables:
+
+```bash
+RAPIDAPI_KEY=your_rapidapi_key_here
+```
+
+For production deployment, implement additional API key authentication or OAuth2 for client access.
 
 ## Content Type
 

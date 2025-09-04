@@ -11,13 +11,14 @@ class Settings(BaseSettings):
     """Application settings"""
     
     # API Keys
-    amadeus_api_key: Optional[str] = None
-    amadeus_api_secret: Optional[str] = None
-    booking_com_api_key: Optional[str] = None
-    expedia_api_key: Optional[str] = None
-    airbnb_api_key: Optional[str] = None
-    skyscanner_api_key: Optional[str] = None
+    rapidapi_key: Optional[str] = None
     openai_api_key: Optional[str] = None
+    
+    # RapidAPI Travel API Endpoints
+    rapidapi_flight_search_host: str = "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com"
+    rapidapi_hotel_search_host: str = "booking-com.p.rapidapi.com"
+    rapidapi_airbnb_host: str = "airbnb13.p.rapidapi.com"
+    rapidapi_amadeus_host: str = "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com"
     
     # Database
     database_url: str = "sqlite:///./travel_planner.db"
@@ -30,11 +31,9 @@ class Settings(BaseSettings):
     # Logging
     log_level: str = "INFO"
     
-    # External API Configuration
-    amadeus_base_url: str = "https://test.api.amadeus.com"
-    booking_com_base_url: str = "https://distribution-xml.booking.com"
-    expedia_base_url: str = "https://api.expedia.com"
-    skyscanner_base_url: str = "https://partners.api.skyscanner.net"
+    # RapidAPI Configuration
+    rapidapi_base_url: str = "https://rapidapi.com"
+    rapidapi_timeout: int = 30
     
     # CrewAI Configuration
     crewai_model: str = "gpt-3.5-turbo"

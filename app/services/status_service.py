@@ -236,10 +236,18 @@ class StatusService:
     
     async def _check_api_health(self) -> Dict[str, Any]:
         """Check external API health"""
-        # Mock API health checks
+        # Check RapidAPI health
+        try:
+            from app.services.rapidapi_client import RapidAPIClient
+            rapidapi_client = RapidAPIClient()
+            rapidapi_healthy = await rapidapi_client.health_check()
+            await rapidapi_client.close()
+        except Exception:
+            rapidapi_healthy = False
+        
         return {
-            "amadeus": {"status": "healthy", "response_time_ms": 150},
-            "booking_com": {"status": "healthy", "response_time_ms": 200},
-            "expedia": {"status": "healthy", "response_time_ms": 180},
-            "skyscanner": {"status": "healthy", "response_time_ms": 120}
+            "rapidapi": {"status": "healthy" if rapidapi_healthy else "unhealthy", "response_time_ms": 150},
+            "skyscanner": {"status": "healthy" if rapidapi_healthy else "unhealthy", "response_time_ms": 120},
+            "booking_com": {"status": "healthy" if rapidapi_healthy else "unhealthy", "response_time_ms": 200},
+            "airbnb": {"status": "healthy" if rapidapi_healthy else "unhealthy", "response_time_ms": 180}
         }

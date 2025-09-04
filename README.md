@@ -136,13 +136,8 @@ The application can be configured through environment variables:
 
 ```bash
 # API Keys
+RAPIDAPI_KEY=your_rapidapi_key
 OPENAI_API_KEY=your_openai_api_key
-AMADEUS_API_KEY=your_amadeus_api_key
-AMADEUS_API_SECRET=your_amadeus_api_secret
-BOOKING_COM_API_KEY=your_booking_api_key
-EXPEDIA_API_KEY=your_expedia_api_key
-AIRBNB_API_KEY=your_airbnb_api_key
-SKYSCANNER_API_KEY=your_skyscanner_api_key
 
 # Database
 DATABASE_URL=sqlite:///./travel_planner.db
@@ -153,6 +148,16 @@ PORT=8000
 DEBUG=True
 LOG_LEVEL=INFO
 ```
+
+### Getting RapidAPI Key
+
+1. **Sign up for RapidAPI**: Visit [RapidAPI](https://rapidapi.com) and create an account
+2. **Subscribe to Travel APIs**: Subscribe to these APIs:
+   - [Skyscanner Flight Search](https://rapidapi.com/skyscanner/api/skyscanner-flight-search)
+   - [Booking.com Hotels](https://rapidapi.com/booking-com/api/booking-com)
+   - [Airbnb Search](https://rapidapi.com/airbnb13/api/airbnb13)
+3. **Get your API Key**: Copy your RapidAPI key from the dashboard
+4. **Set environment variable**: Add `RAPIDAPI_KEY=your_key_here` to your `.env` file
 
 ## 🤖 CrewAI Agents
 
@@ -167,16 +172,22 @@ Each agent is configured with specific roles, goals, and backstories to provide 
 
 ## 🔌 External API Integration
 
-The system integrates with multiple external APIs:
+The system integrates with multiple travel APIs through RapidAPI:
 
 ### Flight APIs
-- **Amadeus**: Official airline industry API
-- **Skyscanner**: Travel search engine API
+- **Skyscanner Flight Search**: Comprehensive flight search and comparison
+- **Amadeus**: Alternative flight search (when available)
 
 ### Hotel APIs
-- **Booking.com**: Global hotel inventory
-- **Expedia**: Hotel and package deals
-- **Airbnb**: Alternative accommodations
+- **Booking.com**: Global hotel inventory and booking
+- **Airbnb**: Alternative accommodations and unique stays
+
+### Benefits of RapidAPI Integration
+- **Single API Key**: Access multiple travel APIs with one key
+- **Unified Interface**: Consistent API structure across providers
+- **Cost Effective**: Pay-per-use pricing for individual developers
+- **Easy Setup**: No need for direct partnerships with travel companies
+- **Reliable**: Managed infrastructure with high availability
 
 ## 📊 Monitoring and Logging
 
