@@ -31,14 +31,58 @@ async def test_rapidapi_integration():
     client = RapidAPIClient()
     
     try:
-        # Test health check
+        # Test health check with detailed debugging
         print("\n🔍 Testing health check...")
-        health = await client.health_check()
-        if health:
-            print("✅ RapidAPI health check passed")
-        else:
-            print("❌ RapidAPI health check failed")
-            return False
+        print("Making test request to Skyscanner API...")
+        
+        # Let's test the actual request manually first
+        import httpx
+        headers = {
+            "X-RapidAPI-Key": api_key,
+            "X-RapidAPI-Host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com"
+        }
+        
+        test_url = "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/browsequotes/v1.0/US/USD/en-US/NYC/LAX/2024-06-15"
+        
+        async with httpx.AsyncClient() as test_client:
+            try:
+                response = await test_client.get(test_url, headers=headers, timeout=30.0)
+                print(f"Response status: {response.status_code}")
+                print(f"Response headers: {dict(response.headers)}")
+                
+                if response.status_code == 200:
+                    print("✅ Direct API test successful!")
+                elif response.status_code == 400:
+                    print("⚠️ API responded with 400 (Bad Request) - this is normal for test data")
+                elif response.status_code == 401:
+                    print("❌ API responded with 401 (Unauthorized) - check your API key")
+                    print("Make sure you have subscribed to the Skyscanner API on RapidAPI")
+                elif response.status_code == 403:
+                    print("❌ API responded with 403 (Forbidden) - check your subscription")
+                    print("Make sure you have an active subscription to the Skyscanner API")
+                elif response.status_code == 429:
+                    print("❌ API responded with 429 (Rate Limited) - you've exceeded your quota")
+                else:
+                    print(f"❌ Unexpected status code: {response.status_code}")
+                    print(f"Response text: {response.text[:200]}...")
+                
+                # Try the health check
+                health = await client.health_check()
+                if health:
+                    print("✅ RapidAPI health check passed")
+                else:
+                    print("❌ RapidAPI health check failed")
+                    return False
+                    
+            except httpx.TimeoutException:
+                print("❌ Request timed out - check your internet connection")
+                return False
+            except httpx.RequestError as e:
+                print(f"❌ Request error: {e}")
+                return False
+            except Exception as e:
+                print(f"❌ Unexpected error: {e}")
+                return False
         
         # Test flight search
         print("\n✈️ Testing flight search...")
